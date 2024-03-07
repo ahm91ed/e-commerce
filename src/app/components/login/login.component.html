@@ -1,0 +1,77 @@
+<section class="bg-main-light p-4 rounded my-3 w-75 mx-auto">
+  <h1>Login Now</h1>
+
+  <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+    <div class="mb-2">
+      <label for="email"> email :</label>
+      <input
+        #loginEmailInput
+        id="email"
+        class="form-control"
+        formControlName="email"
+        type="email"
+      />
+
+      <div
+        *ngIf="
+          loginForm.get('email')?.errors &&
+          (loginForm.get('email')?.touched || loginEmailInput.value.length > 0)
+        "
+        class="alert alert-danger"
+      >
+        <p *ngIf="loginForm.get('email')?.getError('required')">
+          E-mail is required
+        </p>
+
+        <p *ngIf="loginForm.get('email')?.getError('email')">
+          email InValid Format
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="password"> password :</label>
+      <input
+        #loginPasswordInput
+        id="password"
+        class="form-control"
+        formControlName="password"
+        type="password"
+      />
+
+      <div
+        *ngIf="
+          loginForm.get('password')?.errors &&
+          (loginForm.get('password')?.touched ||
+            loginPasswordInput.value.length > 0)
+        "
+        class="alert alert-danger"
+      >
+        <p *ngIf="loginForm.get('password')?.getError('required')">
+          password is required
+        </p>
+
+        <p *ngIf="loginForm.get('password')?.getError('pattern')">
+          password must start with upperCase and be at least 6 chars
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <button [disabled]="loginForm.invalid" class="btn-main me-auto d-block mb-2">
+          <span *ngIf="isLoading">
+            <i class="fa-solid fa-spinner fa-spin fa-lg"></i>
+          </span>
+          Login
+        </button>
+
+        <p *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </p>
+      </div>
+
+      <a class="link-primary" routerLink="/forgetpassword">Forget Password</a>
+    </div>
+  </form>
+</section>

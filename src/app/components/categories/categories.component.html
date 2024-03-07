@@ -1,0 +1,28 @@
+ <!-- get gategories -->
+ 
+ <section class="my-5 cursor-pointer">
+  <h2 class="mb-3">All Categories</h2>
+
+  <div class="row g-3">
+    <div class="col-md-3" *ngFor="let category of categories">
+      <div class="product " [routerLink]="['/categoriesdetails' , category._id ]">
+        <img
+          [src]="category.image"
+          [alt]="category.name"
+          height="270"
+          class="w-100"
+        />
+        <h3 class="h5 mt-2 text-dark text-center">
+          {{ category.name }}
+        </h3>
+      </div>
+    </div>
+  </div>
+</section> 
+
+
+
+
+
+
+

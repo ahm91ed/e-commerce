@@ -1,0 +1,12 @@
+<section class="py-4">
+  <h2 class="text-main text-center m-4">All Brands</h2>
+
+  <div class="row g-2">
+    <div *ngFor="let brand of brands" class="col-md-3">
+      <div class="product cursor-pointer text-center py-4">
+        <img class="w-100" [src]="brand.image" [alt]="brand.name" />
+        <span>{{ brand.slug }}</span>
+      </div>
+    </div>
+  </div>
+</section>
